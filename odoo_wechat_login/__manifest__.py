@@ -6,7 +6,7 @@
     'author': "XueFeng.Su",
     'website': "https://github.com/cd-feng",
     'category': 'Wechat/登录',
-    'version': '15.0.1',
+    'version': '18.0.0.1',
     'depends': ['odoo_wechat'],
     "license": "AGPL-3",
     'installable': True,
