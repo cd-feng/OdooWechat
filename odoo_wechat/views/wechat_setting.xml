@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record model="ir.ui.view" id="view_wechat_setting_tree">
+        <field name="name">API参数配置</field>
+        <field name="model">wechat.setting</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="company_id" optional="show"/>
+                <field name="name"/>
+                <field name="wechat_corp_id"/>
+                <field name="is_create_wechat_user"/>
+                <field name="wechat_js_sdk_file"/>
+                <field name="active" widget="boolean_toggle"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_wechat_setting_form" model="ir.ui.view">
+        <field name="name">API参数配置</field>
+        <field name="model">wechat.setting</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <field name="active" invisible="1"/>
+                    <widget name="web_ribbon" title="已存档" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                    <group col="2">
+                        <group>
+                            <field name="name"/>
+                            <field name="company_id" options="{'no_open': True, 'no_create': True}"/>
+                            <field name="wechat_corp_id"/>
+                            <field name="wechat_js_sdk_file" filename="wechat_js_sdk_file_name"/>
+                            <field name="wechat_js_sdk_file_name"/>
+                        </group>
+                        <group>
+                            <field name="wechat_agent_id"/>
+                            <field name="wechat_secret"/>
+                            <field name="is_create_wechat_user"/>
+                            <field name="wechat_default_passwd" attrs="{'required': [('is_create_wechat_user', '=', True)], 'invisible': [('is_create_wechat_user', '!=', True)]}"/>
+                        </group>
+                    </group>
+                    <group string="备注">
+                        <field name="description" nolabel="1" placeholder="可以填写备注信息..."/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="wechat_setting_act_window">
+        <field name="name">企业微信API参数配置</field>
+        <field name="res_model">wechat.setting</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_wechat_setting" name="API参数配置" parent="wechat_root_menu" sequence="1" action="wechat_setting_act_window"/>
+
+</odoo>

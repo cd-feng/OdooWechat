@@ -1,0 +1,14 @@
+body {
+    font-family: Helvetica Neue, Helvetica, Arial Unicode MS, Arial, serif;
+    font-size: 10pt;
+    border:none;
+    background-color: #00010b;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}

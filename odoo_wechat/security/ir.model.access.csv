@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_wechat_setting,wechat.setting,model_wechat_setting,,1,1,1,1
+access_wechat_department_synchronous,wechat.department.synchronous,model_wechat_department_synchronous,,1,1,1,1
+access_wechat_employee_synchronous,wechat.employee.synchronous,model_wechat_employee_synchronous,,1,1,1,1

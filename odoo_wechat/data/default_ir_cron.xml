@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+
+        <record id="odoo_ir_sync_wechat_data_cron" model="ir.cron">
+            <field name="name">企业微信-定时同步企业微信联系人数据</field>
+            <field name="user_id" ref="base.user_root"/>
+            <field name="model_id" ref="model_hr_wechat_cron"/>
+            <field name="state">code</field>
+            <field name="code">model._hr_sync_cron()</field>
+            <field name="interval_number">1</field>
+            <field name="interval_type">days</field>
+            <field name="numbercall">-1</field>
+            <field name="doall" eval="False"/>
+        </record>
+
+    </data>
+</odoo>

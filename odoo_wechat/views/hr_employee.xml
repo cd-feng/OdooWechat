@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_employee_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.form</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook/page[1]" position="after">
+                <page string="企业微信">
+                    <group>
+                        <group>
+                            <field name="wechat_id" readonly="1"/>
+                            <field name="wechat_department_ids" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="wechat_status"/>
+                            <field name="wechat_ex_alias"/>
+                        </group>
+                        <group style="width:100%;">
+                            <field name="wechat_avatar_url"/>
+                        </group>
+                    </group>
+                    <group string="头像">
+                        <group>
+                            <field name="wechat_avatar"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

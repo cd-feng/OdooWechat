@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_hr_department_form_inherit" model="ir.ui.view">
+        <field name="name">hr.department.form</field>
+        <field name="model">hr.department</field>
+        <field name="inherit_id" ref="hr.view_department_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <group string="企业微信信息" col="2">
+                    <group>
+                        <field name="wechat_id"/>
+<!--                        <field name="wechat_parent_id"/>-->
+                    </group>
+                    <group>
+<!--                        <field name="wechat_department_leader"/>-->
+<!--                        <field name="wechat_order"/>-->
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
