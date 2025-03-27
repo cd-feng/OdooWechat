@@ -3,7 +3,7 @@ import logging
 import base64
 import requests
 from wechatpy.enterprise import WeChatClient
-from odoo import api, fields, models
+from odoo import api, fields, models, SUPERUSER_ID
 _logger = logging.getLogger(__name__)
 
 def get_emp_avatar(avatar_url, timeout=5):
@@ -18,6 +18,7 @@ def get_emp_avatar(avatar_url, timeout=5):
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    job_number = fields.Char(string="工号", index=True)
     wechat_id = fields.Char(string='企业微信Id', index=True)
     wechat_department_ids = fields.Many2many('hr.department', 'hr_employee_and_wechat_department_rel', string='所属部门')
     wechat_avatar = fields.Html('微信头像', compute='_compute_wechat_avatar', store=True)
@@ -147,5 +148,5 @@ class HrEmployee(models.Model):
         domain = [('wechat_id', '=', wechat_id)]
         if company_id:
             domain.append(('company_id', '=', company_id))
-        return self.search(domain, limit=1)
+        return self.with_user(SUPERUSER_ID).search(domain, limit=1)
 

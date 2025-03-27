@@ -7,12 +7,14 @@
     'website': "https://github.com/cd-feng",
     'category': 'Wechat/登录',
     'version': '18.0.0.1',
-    'depends': ['odoo_wechat'],
+    'depends': ['odoo_wechat', 'auth_oauth'],
     "license": "AGPL-3",
     'installable': True,
     'application': False,
     'auto_install': False,
     'data': [
+        'data/auth_oauth_data.xml',
+
         'views/wechat_login_template.xml',
     ],
 }

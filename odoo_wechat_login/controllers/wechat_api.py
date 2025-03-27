@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 import logging
 from wechatpy.enterprise import WeChatClient
-from odoo.addons.web.controllers.main import ensure_db
+from odoo.addons.web.controllers.utils import ensure_db
+from odoo.addons.auth_oauth.controllers.main import OAuthController
 from odoo.http import request, route, Controller
 from odoo.exceptions import AccessError
 from odoo.service import security
@@ -9,7 +10,7 @@ from odoo.service import security
 _logger = logging.getLogger(__name__)
 
 
-class WeChatApi(Controller):
+class WeChatApi(OAuthController):
 
     @route('/wechat/auto_oauth', type='http', auth='none', methods=['GET'])
     def wechat_auto_oauth(self, **kw):
@@ -42,7 +43,7 @@ class WeChatApi(Controller):
     @route('/wechat/oauth/login', type='http', auth='none', methods=['GET'])
     def wechat_oauth_login(self, **kw):
         """
-        根据企业微信的用户身份在PC端做免登认证处理，认证成功即可登录MDIAS系统
+        根据企业微信的用户身份在PC端做免登认证处理，认证成功即可登录系统
         """
         _logger.info('企业微信正在调用免登身份认证，携带参数为:{}'.format(kw))
         code, corp_id = kw.get('code', None), kw.get('state', None)
@@ -54,19 +55,21 @@ class WeChatApi(Controller):
         try:
             client = WeChatClient(setting_id.wechat_corp_id, setting_id.wechat_secret)
             user_data = client.get('auth/getuserinfo', params={'code': code})
-            # user_data = client.user.get_info(setting_id.wechat_agent_id, code)
             wechat_uid = user_data['userid']
-            emp_id = request.env['hr.employee'].sudo().get_emp_by_wechat_id(wechat_uid, setting_id.company_id.id)
+            emp_id = request.env['hr.employee'].get_emp_by_wechat_id(wechat_uid, setting_id.company_id.id)
         except Exception as e:
             return f"获取企业微信用户信息失败：{e}"
         if not emp_id.user_id:
             return f"<h1>系统未授予{emp_id.name}用户的登录权限，请联系管理员处理..</h1>"
+        # 这是不推荐的写法，暂时就先这样吧，后面空了再改成authenticate的标准方式
         try:
-            request.uid = emp_id.user_id.id
+            request.env.registry.clear_cache()
             request.session.uid = emp_id.user_id.id
             request.session.session_token = security.compute_session_token(request.session, request.env)
         except AccessError as e:
             return "尝试登录系统失败：{}".format(e)
         except Exception as e:
             raise e
-        return request.redirect('/web')
+        redirect = request.redirect('/odoo', 303)
+        redirect.autocorrect_location_header = False
+        return redirect

@@ -7,7 +7,7 @@
         <field name="inherit_id" ref="hr.view_department_form"/>
         <field name="arch" type="xml">
             <xpath expr="//sheet" position="inside">
-                <group string="企业微信信息" col="2">
+                <group string="企业微信" col="2">
                     <group>
                         <field name="wechat_id"/>
 <!--                        <field name="wechat_parent_id"/>-->
