@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!--企业微信应用内免登模板-->
+    <template id="odoo_work_weixin_login.oauth_login_template" name="WechatOauthLoginTemplate">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <link rel="stylesheet" href="/odoo_work_weixin_login/static/src/libs/element.css" type="text/css"/>
+                <link rel="stylesheet" href="/odoo_work_weixin_login/static/src/css/wechat_company_login.css" type="text/css"/>
+                <script src="/odoo_work_weixin_login/static/src/libs/vue.global.js" type="application/javascript"> </script>
+                <script src="/odoo_work_weixin_login/static/src/libs/element.min.js" type="application/javascript"> </script>
+            </t>
+            <p id="wechat_company_data" style="display:none;"> <t t-esc="wechat_company_data"/></p>
+            <div style="width:100%;" id="app"> </div>
+            <t t-call="web.layout">
+                <script type="text/javascript" src="/odoo_work_weixin_login/static/src/js/wechat_oauth_login.js"/>
+            </t>
+        </t>
+    </template>
+
+    <!--  企业微信网页授权登录模板  -->
+    <template id="odoo_work_weixin_login.login_template" name="WechatLoginTemplate">
+        <t t-call="web.layout">
+            <t t-set="head">
+                <link rel="stylesheet" href="/odoo_work_weixin_login/static/src/libs/element.css" type="text/css"/>
+                <link rel="stylesheet" href="/odoo_work_weixin_login/static/src/css/wechat_company_login.css" type="text/css"/>
+                <script src="/odoo_work_weixin_login/static/src/libs/vue.global.js" type="application/javascript"> </script>
+                <script src="/odoo_work_weixin_login/static/src/libs/element.min.js" type="application/javascript"> </script>
+            </t>
+            <p id="wechat_company_data" style="display:none;"> <t t-esc="wechat_company_data"/></p>
+            <div style="width:100%;" id="app"> </div>
+            <t t-call="web.layout">
+                <script type="text/javascript" src="/odoo_work_weixin_login/static/src/js/wechat_login.js"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

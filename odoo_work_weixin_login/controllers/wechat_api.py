@@ -23,7 +23,7 @@ class WeChatApi(OAuthController):
         wechat_company_data = request.env['wechat.setting'].sudo().get_all_company_wechat_corp()
         if not wechat_company_data:
             return request.redirect('/web')
-        return request.render('odoo_wechat_login.oauth_login_template', {
+        return request.render('odoo_work_weixin_login.oauth_login_template', {
             'wechat_company_data': wechat_company_data,
         })
 
@@ -38,7 +38,7 @@ class WeChatApi(OAuthController):
         wechat_company_data = request.env['wechat.setting'].sudo().get_all_company_wechat_corp()
         if not wechat_company_data:
             return request.redirect('/web')
-        return request.render('odoo_wechat_login.login_template', {'wechat_company_data': wechat_company_data})
+        return request.render('odoo_work_weixin_login.login_template', {'wechat_company_data': wechat_company_data})
 
     @route('/wechat/oauth/login', type='http', auth='none', methods=['GET'])
     def wechat_oauth_login(self, **kw):

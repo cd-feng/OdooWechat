@@ -30,4 +30,8 @@
         'wizard/hr_department_wizard.xml',
         'wizard/hr_employee_wizard.xml',
     ],
+    'images': [
+        'static/description/setting_img.png',
+        'static/description/setting_img2.png'
+    ],
 }

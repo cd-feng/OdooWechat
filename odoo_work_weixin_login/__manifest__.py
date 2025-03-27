@@ -17,4 +17,7 @@
 
         'views/wechat_login_template.xml',
     ],
+    'images': [
+        'static/description/login.png'
+    ],
 }
