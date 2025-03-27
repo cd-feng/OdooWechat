@@ -9,7 +9,7 @@
     'version': '15.0.1',
     'depends': ['odoo_wechat'],
     "license": "AGPL-3",
-    'installable': True,
+    'installable': False,
     'application': False,
     'auto_install': False,
     'data': [
