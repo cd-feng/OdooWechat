@@ -42,7 +42,7 @@ class WeChatApi(Controller):
     @route('/wechat/oauth/login', type='http', auth='none', methods=['GET'])
     def wechat_oauth_login(self, **kw):
         """
-        根据企业微信的用户身份在PC端做免登认证处理，认证成功即可登录MDIAS系统
+        根据企业微信的用户身份在PC端做免登认证处理，认证成功即可登录odoo
         """
         _logger.info('企业微信正在调用免登身份认证，携带参数为:{}'.format(kw))
         code, corp_id = kw.get('code', None), kw.get('state', None)

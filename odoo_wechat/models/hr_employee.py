@@ -18,6 +18,7 @@ def get_emp_avatar(avatar_url, timeout=5):
 class HrEmployee(models.Model):
     _inherit = 'hr.employee'
 
+    job_number = fields.Char(string="工号", index=True)
     wechat_id = fields.Char(string='企业微信Id', index=True)
     wechat_department_ids = fields.Many2many('hr.department', 'hr_employee_and_wechat_department_rel', string='所属部门')
     wechat_avatar = fields.Html('微信头像', compute='_compute_wechat_avatar', store=True)
